@@ -1,35 +1,21 @@
-import SpriteComponent from './engine/components/sprite';
-import Engine from './engine/game';
-import Player from './game/player';
-
-let keys: string[] = [];
-document.addEventListener('keydown', (event) => keys.push(event.key));
-document.addEventListener(
-  'keyup',
-  (event) => (keys = keys.filter((k) => k !== event.key)),
-);
+import Game, { Tile } from './lib/game';
+import Player from './lib/player';
 
 const canvas = document.getElementsByTagName('canvas')[0];
 
-const game = new Engine(canvas);
+const game = new Game(canvas);
 
-const player = new Player();
-const spriteComponent = new SpriteComponent();
-player.registerComponent(spriteComponent);
+const player1 = new Player(game);
+// const player2 = new Player(game);
+// player2.controls = { up: 'w', left: 'a', down: 's', right: 'd', place: 'q' };
 
-game.add(player);
-
-game.setup();
-
-// const speed = 5;
-
-// setInterval(() => {
-//   game.clear();
-
-//   if (keys.includes('w')) player.position.y -= speed;
-//   if (keys.includes('a')) player.position.x -= speed;
-//   if (keys.includes('s')) player.position.y += speed;
-//   if (keys.includes('d')) player.position.x += speed;
-
-//   game.draw(player);
-// }, 1000 / 60);
+game.arena[0][0] = Tile.empty;
+game.arena[1][0] = Tile.empty;
+game.arena[2][0] = Tile.empty;
+game.arena[3][0] = Tile.empty;
+game.arena[4][0] = Tile.empty;
+game.arena[4][1] = Tile.empty;
+game.arena[4][2] = Tile.empty;
+game.arena[4][3] = Tile.empty;
+game.arena[4][4] = Tile.empty;
+game.arena[3][4] = Tile.empty;
