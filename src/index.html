@@ -2,14 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Bomberman</title>
 
     <link rel="stylesheet" href="style.css" />
     <script defer src="index.ts" type="module"></script>
   </head>
   <body>
+    <div id="modal">
+      <h1 id="message">Player 1 Won!</h1>
+      <span>Player 1 score: <span class="player1score">0</span></span>
+      <span>Player 2 score: <span class="player2score">0</span></span>
+      <button id="close">Close</butto0n>
+    </div>
+
+    <div id="gui">
+      <div class="buttons">
+        <button id="level1">Level 1</button>
+        <button id="level2">Level 2</button>
+        <button id="level3">Level 3</button>
+        <button onclick="window.location.href = '/settings.html'">Settings</>
+      </div>
+    </div>
+
+    <div id="score">
+      Player 1: <span class="player1score">0</span> <br />
+      Player 2: <span class="player2score">0</span>
+    </div>
+
     <canvas></canvas>
   </body>
 </html>

@@ -1,12 +1,69 @@
 html,
 body {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   overflow: hidden;
+
+  background-color: #222;
+  color: white;
 }
 
 canvas {
   width: 100vw;
   height: 100vh;
+}
+
+#gui {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 8px;
+}
+
+.buttons button {
+  width: 150px;
+  height: 50px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 16pt;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+#modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: #222;
+  border-radius: 10px;
+  border: 2px solid white;
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  visibility: hidden;
+}
+
+#modal button {
+  margin-top: 16px;
+
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 12pt;
+  cursor: pointer;
 }

@@ -1,0 +1,33 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+
+  background-color: #222;
+  color: white;
+
+  display: flex;
+
+  justify-content: space-evenly;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+#back {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+  text-decoration: none;
+}
