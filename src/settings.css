@@ -31,3 +31,15 @@ input {
   color: white;
   text-decoration: none;
 }
+
+button {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  padding: 4px;
+
+  margin-top: 6px;
+}

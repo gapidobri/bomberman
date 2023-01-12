@@ -2,6 +2,9 @@ import Bomb from './bomb';
 import Game, { Tile } from './game';
 import { PowerupType } from './powerup';
 
+const playerTile = new Image();
+playerTile.src = new URL('../assets/player.png', import.meta.url).toString();
+
 type Position = {
   x: number;
   y: number;
@@ -48,9 +51,8 @@ export default class Player {
   }
 
   public draw() {
-    this.game.ctx.fillStyle = 'white';
-
-    this.game.ctx?.fillRect(
+    this.game.ctx.drawImage(
+      playerTile,
       this.position.x * this.game.config.tileSize + this.game.offset.x,
       this.position.y * this.game.config.tileSize + this.game.offset.y,
       this.game.config.tileSize,

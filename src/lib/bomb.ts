@@ -1,8 +1,14 @@
 import Game, { Tile } from './game';
 import Player from './player';
 
-export const bombTile = new Image();
+const bombTile = new Image();
 bombTile.src = new URL('../assets/bomb.png', import.meta.url).toString();
+
+const explosionTile = new Image();
+explosionTile.src = new URL(
+  '../assets/explosion.png',
+  import.meta.url,
+).toString();
 
 export default class Bomb {
   constructor(
@@ -15,9 +21,45 @@ export default class Bomb {
 
   private scale = 40;
   private scaleMod = 1;
+  private exploded = false;
+  private animationTimeout = 150;
+
   private onBreakFn: () => void = () => {};
 
   public tick() {
+    this.animationTimeout--;
+    if (this.exploded) {
+      if (this.animationTimeout <= 0) {
+        const i = this.game.bombs.indexOf(this);
+        this.game.bombs.splice(i, 1);
+        return;
+      }
+
+      for (let x = -this.size; x <= this.size; x++) {
+        this.game.ctx.drawImage(
+          explosionTile,
+          (this.position.x + x) * this.game.config.tileSize +
+            this.game.offset.x,
+          this.position.y * this.game.config.tileSize + this.game.offset.y,
+          this.game.config.tileSize,
+          this.game.config.tileSize,
+        );
+      }
+
+      for (let y = -this.size; y <= this.size; y++) {
+        this.game.ctx.drawImage(
+          explosionTile,
+          this.position.x * this.game.config.tileSize + this.game.offset.x,
+          (this.position.y + y) * this.game.config.tileSize +
+            this.game.offset.y,
+          this.game.config.tileSize,
+          this.game.config.tileSize,
+        );
+      }
+
+      return;
+    }
+
     this.timeout -= 1 / 60;
     this.scale += this.scaleMod;
     if (this.scale <= 40 || this.scale > 60) {
@@ -75,8 +117,7 @@ export default class Bomb {
       }
     }
 
-    const i = this.game.bombs.indexOf(this);
-    this.game.bombs.splice(i, 1);
+    this.exploded = true;
   }
 
   public onBreak(callback: () => void) {
