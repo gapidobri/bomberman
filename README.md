@@ -1,5 +1,7 @@
 # Bomberman
 
+[Source Code](https://github.com/gapidobri/bomberman)
+
 ## Building
 
 Install dependencies
