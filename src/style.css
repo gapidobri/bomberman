@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
 html,
 body {
   width: 100vw;
@@ -7,6 +9,8 @@ body {
 
   background-color: #222;
   color: white;
+
+  font-family: 'Source Code Pro', monospace;
 }
 
 canvas {
@@ -16,6 +20,7 @@ canvas {
 
 #gui {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
@@ -66,4 +71,11 @@ canvas {
   color: white;
   font-size: 12pt;
   cursor: pointer;
+}
+
+#score {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  font-size: 16pt;
 }

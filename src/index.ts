@@ -41,11 +41,13 @@ function setup(config: {
     right: 'd',
     place: 'q',
   };
-  console.log(player2.controls);
 
   player2.onScore((score) => {
     Array.from(player2Score).forEach((el) => (el.innerHTML = score.toString()));
   });
+
+  Array.from(player1Score).forEach((el) => (el.innerHTML = '0'));
+  Array.from(player2Score).forEach((el) => (el.innerHTML = '0'));
 
   game.onLose((player) => {
     if (player === player2) {

@@ -2,11 +2,10 @@
   "name": "bomberman",
   "version": "1.0.0",
   "description": "Bomberman game in JavaScript",
-  "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build"
+    "build": "parcel build --public-url '.' src/*.html"
   },
   "keywords": [],
   "author": "Gašper Dobrovoljc",
