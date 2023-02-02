@@ -5,10 +5,6 @@ import { PowerupType } from './powerup';
 const playerTile = new Image();
 playerTile.src = new URL('../assets/player.png', import.meta.url).toString();
 
-const powerupSound = new Audio(
-  new URL('../assets/powerup.wav', import.meta.url).toString(),
-);
-
 type Position = {
   x: number;
   y: number;
@@ -81,7 +77,9 @@ export default class Player {
           break;
       }
 
-      powerupSound.play();
+      new Audio(
+        new URL('../assets/powerup.wav', import.meta.url).toString(),
+      ).play();
     }
   }
 
