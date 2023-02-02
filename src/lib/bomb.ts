@@ -10,6 +10,10 @@ explosionTile.src = new URL(
   import.meta.url,
 ).toString();
 
+const explosionSound = new Audio(
+  new URL('../assets/explosion.wav', import.meta.url).toString(),
+);
+
 export default class Bomb {
   constructor(
     private game: Game,
@@ -57,6 +61,8 @@ export default class Bomb {
         );
       }
 
+      explosionSound.play();
+
       return;
     }
 
@@ -90,8 +96,15 @@ export default class Bomb {
 
     for (let x = -this.size; x <= this.size; x++) {
       if (this.game.checkTile({ ...this.position, x: this.position.x + x })) {
+        if (
+          this.game.checkTile(
+            { ...this.position, x: this.position.x + x },
+            Tile.wall,
+          )
+        ) {
+          this.onBreakFn();
+        }
         this.game.arena[this.position.x + x][this.position.y] = Tile.empty;
-        this.onBreakFn();
         for (const player of this.game.players) {
           if (
             player.position.x === this.position.x + x &&
@@ -104,8 +117,15 @@ export default class Bomb {
     }
     for (let y = -this.size; y <= this.size; y++) {
       if (this.game.checkTile({ ...this.position, y: this.position.y + y })) {
+        if (
+          this.game.checkTile(
+            { ...this.position, y: this.position.y + y },
+            Tile.wall,
+          )
+        ) {
+          this.onBreakFn();
+        }
         this.game.arena[this.position.x][this.position.y + y] = Tile.empty;
-        this.onBreakFn();
         for (const player of this.game.players) {
           if (
             player.position.x === this.position.x &&

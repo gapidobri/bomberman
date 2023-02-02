@@ -5,6 +5,10 @@ import { PowerupType } from './powerup';
 const playerTile = new Image();
 playerTile.src = new URL('../assets/player.png', import.meta.url).toString();
 
+const powerupSound = new Audio(
+  new URL('../assets/powerup.wav', import.meta.url).toString(),
+);
+
 type Position = {
   x: number;
   y: number;
@@ -76,6 +80,8 @@ export default class Player {
           this.count++;
           break;
       }
+
+      powerupSound.play();
     }
   }
 
@@ -116,6 +122,7 @@ export default class Player {
           });
           bomb.onBreak(() => {
             this.score++;
+            console.log('break');
             this.onScoreFn(this.score);
           });
           this.game.bombs.push(bomb);

@@ -10,12 +10,19 @@ const modal = document.getElementById('modal')!;
 const message = document.getElementById('message')!;
 const closeBtn = document.getElementById('close');
 
+const music = new Audio(
+  new URL('assets/music.mp3', import.meta.url).toString(),
+);
+music.loop = true;
+
 let game: Game;
 function setup(config: {
   tileSize: number;
   tileCount: number;
   powerupCount: number;
 }) {
+  music.play();
+
   game = new Game(canvas, config);
 
   const player1 = new Player(game);
@@ -56,6 +63,7 @@ function setup(config: {
       message.innerText = 'Player 2 won!';
     }
     modal.style.visibility = 'visible';
+    music.pause();
   });
 
   gui.style.display = 'none';
